@@ -77,6 +77,10 @@ const sections = {
         subHeading: "Emergency and high-priority community alerts",
         createDivHeading: "Post Urgent Notice",
         cardHeading: "Urgent Notices"
+    },
+    rulesandguidelines:{
+        heading:"📚 Rules & Guidelines",
+        subHeading: "Report lost or found items in your area"
     }
 }
 
@@ -133,11 +137,14 @@ app.get("/:section",async (req,res) => {
     }
     else{
         try{
-            const allNotices = await config.model.find().sort({_id: -1});
-            // console.log(config);
+            if(config.model){
+                const allNotices = await config.model.find().sort({_id: -1});
+                // console.log(config);
             
-            res.render(`./pages/${section}`,{allNotices,config});
-
+                res.render(`./pages/${section}`,{allNotices,config});
+            }else{
+                res.render(`./pages/${section}`,{config});
+            }
         }catch(err){
             console.log(err);
         };
