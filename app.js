@@ -134,7 +134,7 @@ app.get("/:section",async (req,res) => {
     else{
         try{
             const allNotices = await config.model.find().sort({_id: -1});
-            console.log(config);
+            // console.log(config);
             
             res.render(`./pages/${section}`,{allNotices,config});
 
@@ -153,7 +153,7 @@ app.get("/:section/:id/show",async (req,res) => {
 
     try{
         const card = await config.model.findById(id);
-        // console.log(card);
+        console.log(card);
         res.render("./includes/show/show",{card,config});
     }catch(err){
         console.log(err);
