@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 const UrgentNotice = require("../models/urgent-notice");
+require("dotenv").config({ path: __dirname + "/../.env" });
+
 
 async function main(){
     try{
-        await mongoose.connect("mongodb://127.0.0.1:27017/logindetail");
+        await mongoose.connect(process.env.MONGO_URL);
         console.log("Connected");
     }catch(err){
         console.log(err);
@@ -13,9 +15,9 @@ async function main(){
 main().catch((err)=>{console.log(err)});
 
 let logData = async () => {
-    UrgentNotice.deleteMany({});
+    await UrgentNotice.deleteMany({});
 
-    await UrgentNotice.create(
+    await UrgentNotice.create([
         {
         title: "Annual Sports Meet",
         content: "Join us for the Annual Sports Meet on the school grounds. Events include races, football, and tug of war.",
@@ -51,6 +53,7 @@ let logData = async () => {
         category: "Cultural",
         date: new Date("2025-08-15")
         }
+    ]
         
 )};
 

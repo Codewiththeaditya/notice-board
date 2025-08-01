@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 const LostAndFound = require("../models/lost-and-found");
+require("dotenv").config({ path: __dirname + "/../.env" });
+
 
 async function main(){
     try{
-        await mongoose.connect("mongodb://127.0.0.1:27017/logindetail");
+        await mongoose.connect(process.env.MONGO_URL);
         console.log("Connected");
     }catch(err){
         console.log(err);
@@ -13,9 +15,9 @@ async function main(){
 main().catch((err)=>{console.log(err)});
 
 let logData = async () => {
-    LostAndFound.deleteMany({});
+    await LostAndFound.deleteMany({});
 
-    await LostAndFound.create(
+    await LostAndFound.create([
         {
         title: "Lost Black Wallet",
         content: "Lost a black leather wallet near the college canteen. Contains ID and cash.",
@@ -76,6 +78,7 @@ let logData = async () => {
         name: "Ritika Sinha",
         category: "Found"
         }
+    ]
 )};
 
 logData();
