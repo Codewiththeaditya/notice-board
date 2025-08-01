@@ -5,7 +5,7 @@ const path =  require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-// require("dotenv").config();
+require("dotenv").config();
 
 const User = require("./models/loginData.js");
 const PostNotice = require("./models/post-notice.js")
@@ -24,7 +24,7 @@ const UrgentNotice = require("./models/urgent-notice");
 async function main(){
     try{
         // await mongoose.connect(process.env.MONGO_URL);
-        await mongoose.connect("mongodb://127.0.0.1:27017/logindetail");
+        await mongoose.connect(process.env.MONGO_URL);
         console.log("Connected");
     }
     catch(err){
