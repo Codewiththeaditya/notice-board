@@ -1,0 +1,43 @@
+<div class="container-sm .flex-2">
+    <h2 class="recent-notice-heading mb-4 fw-bold text-rgb(17,29,39) lh-lg fs-2"><%=config.cardHeading%></h2>
+    <div class="notices">
+        <%for(let notice of allNotices){%>
+            <div class="card bg-white m-0 mt-4 rounded-4 shadow">
+                <div class="d-inline-flex justify-content-between align-items-center w-100 ps-4 pe-4 pt-4">
+                    <div>
+                        <h3 class="m-0 mb-1 fw-bold fs-4 lh-base"><%=notice.title%></h3>
+                        <div class="d-inline-flex lh-bold mb-1 fs-6">
+                            <span class="ms-0"><%=notice.name.charAt(0).toUpperCase()+notice.name.slice(1).toLowerCase()%></span>
+                            <span class="ms-2">•</span>
+                            <span class="ms-2"><%=notice.date.toString().split(" ").slice(1,4).join(" ")%></span>
+                        </div>
+                    </div>
+                    <div class="text-black fw-semibold fs-6 lh-1 pt-1 pb-1 ps-2 pe-2 border-1  rounded-4  bg-grey">
+                        <%=notice.category.charAt(0).toUpperCase()+notice.category.slice(1).toLowerCase()%>
+                    </div>
+                </div>
+                <div class="notice-body ps-4 pe-4 pt-0 lh-base">
+                    <p ><%=notice.content.split(" ").slice(0,30).join(" ")%>
+                        <%if(notice.content.split(" ").length > 30){%>
+                            ...
+                        <%}%>
+                    </p>
+                </div>
+
+                <div class="d-flex flex-row pt-0 pb-4 ps-4 pe-4">
+                    <div class="">
+                        <form method="POST" action="/events/<%=notice._id%>?_method=DELETE">
+                            <button class=" btn btn-danger del-btn text-white">delete</button>
+                        </form>
+                    </div>
+
+                    <div class="ms-3">
+                        <form method="GET" action="/events/<%=notice._id%>/show">
+                            <button class="btn btn-dark rounded-3">Show in detail</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <%}%>
+    </div>
+</div>

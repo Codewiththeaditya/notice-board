@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Notice Board</title>
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container-lg">
+        <div class="head mt-5">
+            <h1 class="mainheading heading1">Community Notice Board</h1>
+            <p class="heading2">Stay connected with your community. Share announcements, find lost items, discover events, and keep everyone informed.</p>    
+        </div>
+        <div class="gridContainer">
+            <a href="/postnotice" style="text-decoration: none; color: black;">
+                <div class="cards postnotice">
+                    <div class="cardsicons">
+                        <div class="iconbg postnoticeiconbg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text-icon lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+                        </div>
+                        <span class="cardsspan postnoticespan">📝</span>
+                    </div>
+                    <h3>Post a Notice</h3>
+                    <p style="color: black;">Share general announcements with the community</p>
+                </div>
+           </a>
+            <a href="/lostandfound" style="text-decoration: none; color: black;">
+                <div class="cards lostandfound">
+                    <div class="cardsicons">
+                        <div class="iconbg lostandfoundiconbg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+                        </div>
+                        <span class="cardsspan lostandfoundspan">🕵️‍♂️</span>
+                    </div>
+                    <h3>Lost & Found</h3>
+                    <p>Report lost or found items in your area</p>
+                </div>
+           </a>
+
+            <a href="/events" style="text-decoration: none; color: black;">
+                <div class="cards events">
+                    <div class="cardsicons">
+                        <div class="iconbg eventsiconbg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                        </div>
+                        <span class="cardsspan eventsspan">📢</span>
+                    </div>
+                    <h3>Events</h3>
+                    <p>Discover upcoming community events</p>
+                </div>
+           </a>
+
+           <a href="/urgentnotice" style="text-decoration: none; color: black;">
+                <div class="cards urgentnotice">
+                    <div class="cardsicons">
+                        <div class="iconbg urgentnoticeiconbg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert-icon lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                        </div>
+                        <span clas="cardsspan urgentnoticespan">🚨</span>
+                    </div>
+                    <h3>Urgent Notices</h3>
+                    <p>Emergency and high-priority community alerts</p>
+                </div>
+           </a>
+
+           <a href="/rulesandguidelines" style="text-decoration: none; color: black;">
+                <div class="cards rulesandguidelines">
+                    <div class="cardsicons">
+                        <div class="iconbg rulesandguidelinesiconbg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                        </div>
+                        <span class="cardsspan rulesandguidelinesspan">📚</span>
+                    </div>
+                    <h3>Rules and Guidelines</h3>
+                    <p>Community posting rules and guidelines</p>
+                </div>
+           </a>    
+
+           <a href="/contact-feedback" style="text-decoration: none; color: black;">
+                <div class="cards contact feedback">
+                    <div class="cardsicons">
+                        <div class="iconbg contacticonbg feedbackbg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                        </div>
+                        <span class="cardsspan contactspan feedbackspan">📬</span>
+                    </div>
+                    <h3>Contact/Feedback</h3>
+                    <p>Send suggestions or queries to moderators</p>
+                </div>
+           </a>
+           
+        </div>
+
+        <!-- <%- include("../includes/footer/footer") %> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

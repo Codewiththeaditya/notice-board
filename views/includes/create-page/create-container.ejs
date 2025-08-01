@@ -1,0 +1,26 @@
+<div class="mt-0">
+    <label for="title" class="form-label">Title*</label><br>
+    <input type="text" class="form-control " name="notice[title]" id="title" placeholder="Enter post title">
+</div>
+<div class="mt-3">
+    <label for="content" class="form-label">Content*</label><br>
+    <textarea type="text" class="form-control" id="content" name="notice[content]" rows="5" placeholder="Write your content here..."></textarea>
+</div>
+
+<div class="mt-3">
+    <label for="name" class="form-label">Your Name*</label><br>
+    <input type="text" class="form-control" name="notice[name]" id="name">
+</div>
+
+<div class="mt-3">
+    <label for="category" class="form-label">Category</label><br>
+    <select name="notice[category]" id="category" class="form-control">
+        <option value="none">Select Category</option>
+        <%for(i of config.category){%>
+            <option value="<%=i%>"><%= i %></option>
+        <%}%>
+    </select>
+</div>
+<div class="mt-3">
+    <button class="btn btn-primary w-100 fw-bold rounded-3 mb-3 create-post-btn submit-btn">Create Post</button>
+</div>
