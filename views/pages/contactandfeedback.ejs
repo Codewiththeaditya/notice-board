@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact and Feedback</title>
+    <link rel="stylesheet" href="./css/style2.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+    <%-include("../includes/header/header.ejs")%>
+    <div class="container-lg ">
+        <div class="form-wrapper-md">
+
+        
+            <div class="row offset-md-2 gap-md-2">
+                    <div class="card mt-4 col-lg-5 col-md-5 col-sm-12 h-50">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4 class="ps-3 fw-bold">Send us a Message</h4>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mt-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Enter your name">
+                                    </div>
+                                    
+                                    <div class="mt-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="text" class="form-control" name="email" placeholder="Enter email">
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <label for="subject" class="form-label">Subject</label>
+                                        <select name="subject" class="form-control">
+                                            <option value="none">Select a subject</option>
+                                            <option value="general inquiry">General Inquiry</option>
+                                            <option value="suggestion">Suggestion</option>
+                                            <option value="report content">Report Content</option>
+                                            <option value="technical issue">Technical Issue</option>
+                                            <option value="feedback">Feedback</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea name="message" placeholder="Enter your message here ..." class="form-control"></textarea>
+                                    </div>
+
+                                    <button class="btn btn-primary mt-4">Send a message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 col-lg-5 col-md-5 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4 class="fw-bold ps-2">Contact Information</h4>
+                                </div>
+                                <div class="card-text ps-2">
+                                    <div class="d-flex  align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-5 h-5 text-blue-600 text-primary"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                                        <div class="d-flex flex-column ms-3 mt-1">
+                                            <p class="mb-1 mt-2 fw-semibold">Email</p>
+                                            <p>moderators@community.local</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-5 h-5 text-blue-600 text-primary"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                        <div class="d-flex flex-column ms-3">
+                                            <p class="mb-1 mt-2 fw-semibold">Phone</p>
+                                            <p>98765432</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-5 h-5 text-blue-600 text-primary"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                        <div class="d-flex flex-column ms-3">
+                                            <p class="mb-1 mt-2 fw-semibold">Address</p>
+                                            <p>Community Center <br> 123 Main Street</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-3 mb-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4 class="fw-bold ps-2">Frequently Asked Questions</h4>
+                                </div>
+                                <div class="card-text p-2">
+                                    <div>
+                                        <p class="fw-semibold m-0">How quickly will I get a response?</p>
+                                        <p>We typically respond within 24-48 hours during business days.</p>
+                                    </div>
+
+                                    <div>
+                                        <p class="fw-semibold m-0">Can I delete my own posts?</p>
+                                        <p>Currently, only moderators can delete posts. Contact us if you need a post removed.</p>
+                                    </div>
+
+                                    <div>
+                                        <p class="fw-semibold m-0">How do I report inappropriate content?</p>
+                                        <p>Use the "Report Content" subject when contacting us, and include the post details.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    <%- include("../includes/footer/footer")%>
+</body>
+</html>

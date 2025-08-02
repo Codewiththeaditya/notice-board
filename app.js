@@ -12,6 +12,7 @@ const PostNotice = require("./models/post-notice.js")
 const LostAndFound = require("./models/lost-and-found");
 const Event = require("./models/event");
 const UrgentNotice = require("./models/urgent-notice");
+const { subscribe } = require("diagnostics_channel");
 
 
 
@@ -81,6 +82,10 @@ const sections = {
     rulesandguidelines:{
         heading:"📚 Rules & Guidelines",
         subHeading: "Report lost or found items in your area"
+    },
+    contactandfeedback:{
+        heading: "📬 Contact/Feedback",
+        subHeading: "Send suggestions or queries to moderators"
     }
 }
 
@@ -160,7 +165,7 @@ app.get("/:section/:id/show",async (req,res) => {
 
     try{
         const card = await config.model.findById(id);
-        console.log(card);
+        // console.log(card);
         res.render("./includes/show/show",{card,config});
     }catch(err){
         console.log(err);
