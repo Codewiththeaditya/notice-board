@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const port = process.env.PORT || 8080;
 const path =  require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-require("dotenv").config();
+
 
 const User = require("./models/loginData.js");
 const PostNotice = require("./models/post-notice.js")
