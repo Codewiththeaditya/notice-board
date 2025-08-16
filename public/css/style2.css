@@ -237,3 +237,13 @@ html,body{
         margin: 0rem 1rem;
     }
 }
+
+.scrollbar{
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollbar::-webkit-scrollbar{
+    display: none;
+}

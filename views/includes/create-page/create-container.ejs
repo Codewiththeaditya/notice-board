@@ -1,25 +1,33 @@
+
 <div class="mt-0">
     <label for="title" class="form-label">Title*</label><br>
-    <input type="text" class="form-control " name="notice[title]" id="title" placeholder="Enter post title">
+    <input type="text" class="form-control " name="notice[title]" id="title" placeholder="Enter post title" required>
+    <div class="invalid-feedback">Please enter Title.</div>
+
 </div>
 <div class="mt-3">
     <label for="content" class="form-label">Content*</label><br>
-    <textarea type="text" class="form-control" id="content" name="notice[content]" rows="5" placeholder="Write your content here..."></textarea>
+    <textarea type="text" class="form-control" id="content" name="notice[content]" rows="5" placeholder="Write your content here..." required></textarea>
+    <div class="invalid-feedback">Atleast 10 character required.</div>
+
 </div>
 
 <div class="mt-3">
     <label for="name" class="form-label">Your Name*</label><br>
-    <input type="text" class="form-control" name="notice[name]" id="name">
+    <input type="text" class="form-control" name="notice[name]" id="name" required>
+    <div class="invalid-feedback">Please enter correct name</div>
 </div>
 
 <div class="mt-3">
     <label for="category" class="form-label">Category</label><br>
-    <select name="notice[category]" id="category" class="form-control">
+    <select name="notice[category]" id="category" class="form-control" required>
         <option value="none">Select Category</option>
         <%for(i of config.category){%>
             <option value="<%=i%>"><%= i %></option>
         <%}%>
     </select>
+    <div class="invalid-feedback">Please select any one.</div>
+
 </div>
 <div class="mt-3">
     <button class="btn btn-primary w-100 fw-bold rounded-3 mb-3 create-post-btn submit-btn">Create Post</button>
