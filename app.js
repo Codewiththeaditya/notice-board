@@ -1,25 +1,47 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const port = process.env.PORT || 8080;
+const port =  8080;//process.env.PORT ||
 const path =  require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 
-const User = require("./models/loginData.js");
-const PostNotice = require("./models/post-notice.js")
-const LostAndFound = require("./models/lost-and-found");
-const Event = require("./models/event");
-const UrgentNotice = require("./models/urgent-notice");
-const { subscribe } = require("diagnostics_channel");
+const User = require("./models/userModel.js");
+const authRoute = require('./routes/user.js');
+const postNoticeRoute = require('./routes/postnotice.js');
+const urgentNoticeRoute = require('./routes/urgentnotice.js');
+const eventRoute = require('./routes/event.js');
+const lostandfoundRoute = require('./routes/lostandfound.js');
+const ExpressError = require("./utils/ExpressError.js");
+const {isLoggedIn} = require("./middleware.js")
+
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 
 
+app.use(session({
+    secret: "mysupersecretkey",
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(flash());
+app.use((req, res, next)=>{
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
 
 
-
-
+app.use(passport.session());
+app.use(passport.initialize());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 
@@ -47,176 +69,32 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 
 
-const sections = {
-    postnotice:{
-        model: PostNotice,
-        category: ["Announcement","Genral","Safety","Maintainance"],
-        heading: "📝 Post a Notice",
-        subHeading: "Share general announcements with the community",
-        createDivHeading: "Create New Notice",
-        cardHeading: "Recent Notices"
-    },
-    events:{
-        model: Event,
-        category: ["Social Events","Safety Meeting","Workshop","Sports","Art & Culture","Educational"],
-        heading: "📢 Events",
-        subHeading: "Discover upcoming community events",
-        createDivHeading: "Create Event",
-        cardHeading: "Upcoming Events"
-    },
-    lostandfound: {
-        model: LostAndFound,
-        category: ["Lost","Found"],
-        heading: "🕵️‍♂️ Lost and Found",
-        subHeading: "Report Lost and Found item in your area",
-        createDivHeading: "Report Lost/Found Item",
-        cardHeading: "Lost & Found Items"
-    },
-    urgentnotice: {
-        model: UrgentNotice,
-        category: ["Security","Maintenance","Weather Alert","Emergency","Health And Safety"],
-        heading: "🚨 Urgent Notices",
-        subHeading: "Emergency and high-priority community alerts",
-        createDivHeading: "Post Urgent Notice",
-        cardHeading: "Urgent Notices"
-    },
-    rulesandguidelines:{
-        heading:"📚 Rules & Guidelines",
-        subHeading: "Report lost or found items in your area"
-    },
-    contactandfeedback:{
-        heading: "📬 Contact/Feedback",
-        subHeading: "Send suggestions or queries to moderators"
-    }
-}
 
-//fill id pass using pass and send using get and post
-app.get("/",(req,res)=>{
-    res.render("pages/index.ejs");
-    // res.redirect("/login");
+
+
+app.get('/home',(req,res)=>{
+    res.render("./pages/index.ejs",);
+});
+
+
+app.use('/postnotice',postNoticeRoute);
+app.use('/lostandfound',lostandfoundRoute);
+app.use('/event',eventRoute);
+app.use('/urgentnotice',urgentNoticeRoute);
+app.use('/auth',authRoute);
+
+
+
+
+
+app.all(/.*/, (req, res, next)=>{
+    next(new ExpressError('Page not found',404));
 })
 
-app.get("/login",(req,res)=>{
-    res.render("login-page.ejs");
-});
-
-//Parse data and check the entry is correct or not :
-
-app.post("/login",async (req,res)=>{
-    let {email, password} = req.body;
-
-    try{
-        let user = await User.findOne({email: email});
-
-        if(user){
-            if(user.password === password){
-                res.redirect("/index");
-            }else{
-                res.send("incorect pass");
-            }
-        }else{
-            res.send("No user");
-        }
-    }
-    catch(err){
-        console.log(err);
-    };
-    // console.log("working");
-    // res.send("ok");
-});
-
-
-//to go to index page :
-app.get("/index",(req,res)=>{
-    // res.render("./pages/index.ejs");
-    res.redirect("/");
+app.use((err, req, res, next)=>{
+    let {message='Something went wrong !', statusCode=500} = err;
+    res.status(statusCode).render('error.ejs',{message});
 })
-
-
-//GET ROUTE :
-
-app.get("/:section",async (req,res) => {
-    const {section} = req.params;
-    const config = sections[section];
-    if(!config){
-        return res.status(404).send("Page Not Found !")
-    }
-    else{
-        try{
-            if(config.model){
-                const allNotices = await config.model.find().sort({_id: -1});
-                // console.log(config);
-            
-                res.render(`./pages/${section}`,{allNotices,config});
-            }else{
-                res.render(`./pages/${section}`,{config});
-            }
-        }catch(err){
-            console.log(err);
-        };
-    };
-});
-
-
-//show page :
-
-app.get("/:section/:id/show",async (req,res) => {
-    const {section, id} = req.params;
-    const config = sections[section];
-
-    try{
-        const card = await config.model.findById(id);
-        // console.log(card);
-        res.render("./includes/show/show",{card,config});
-    }catch(err){
-        console.log(err);
-    }
-});
-
-//POST ROUTE :
-
-app.post("/:section",async (req,res) => {
-    const {section} = req.params;
-    const config = sections[section];
-    const {notice} = req.body;
-    
-    try{
-        await config.model.create(notice);
-        res.redirect(`/${section}`);
-    }catch(err){
-        console.log(err);
-    }
-});
-
-app.delete("/:section/:id",async (req,res) => {
-    const {section,id} = req.params;
-    const config = sections[section];
-
-    try{
-        await config.model.findByIdAndDelete(id);
-        res.redirect(`/${section}`);
-    }catch(err){
-        console.log(err);
-    }
-
-})
-
-
-//to go to rules-and-regulation page :
-app.get("/rulesandguidelines",(req,res)=>{
-    res.render("rules-and-guidelines.ejs");
-});
-
-
-
-
-//to go to contact-feedback page :
-app.get("/contact-feedback",(req,res)=>{
-    res.render("contact-feedback.ejs");
-});
-
-
-
 
 app.listen(port,()=>{
     console.log(`Listening at port : ${port}`);

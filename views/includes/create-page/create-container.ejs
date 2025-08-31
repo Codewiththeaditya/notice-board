@@ -22,7 +22,7 @@
     <label for="category" class="form-label">Category</label><br>
     <select name="notice[category]" id="category" class="form-control" required>
         <option value="none">Select Category</option>
-        <%for(i of config.category){%>
+        <%for(i of category){%>
             <option value="<%=i%>"><%= i %></option>
         <%}%>
     </select>
